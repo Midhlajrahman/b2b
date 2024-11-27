@@ -1,0 +1,57 @@
+{% comment %} <a href="{% url 'web:destination-details' destination.pk %}" class="blogCard -type-2 d-block bg-white rounded-10 hotelsCard -type-1">
+    <div class="blogCard__image">
+      <div class="ratio ratio-1:1 rounded-top-10">
+        <img class="img-ratio js-lazy hotelsCard__image" src="#" data-src="{{ destination.get_image.image.url }}" alt="image" >
+      </div>
+    </div>
+    <div class="cardImage__leftBadge">
+      <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+        {{destination.city}}
+      </div>
+    </div>
+    <div class="px-15 py-15 hotelsCard__content" style="min-height: 130px;">
+      <h4 class="hotelsCard__title text-dark-1 text-16  fw-500"><span>{{destination.name}}</span> </h4>
+      <div class="d-flex justify-between items-center">
+        <div>
+          <div class="text-light-1 text-12 lh-14  mt-10">from  </div>
+          <h4 class="text-dark-1 text-14 lh-18 fw-500">{{ destination.get_chepest_price.price }} AED</h4>
+        </div>
+        <div class="mt-10">
+          <button class="button px-20 py-10 h-30 -blue-1 text-blue-1 border-blue-1">
+            View
+          </button>
+        </div>
+      </div>
+      
+    </div>
+    
+  </a> {% endcomment %}
+
+  <a href="{% url 'web:destination-details' destination.pk %}" class="blogCard -type-2 d-block bg-white rounded-10 hotelsCard -type-1">
+    <div class="blogCard__image">
+        <div class="ratio ratio-1:1 rounded-top-10">
+            <img class="img-ratio js-lazy hotelsCard__image" src="#" data-src="{{ destination.get_image.image.url }}" alt="image">
+        </div>
+    </div>
+    <div class="cardImage__leftBadge">
+        <div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-dark-1 text-white">
+            {{ destination.city }}
+        </div>
+    </div>
+    <div class="px-15 py-15 hotelsCard__content" style="min-height: 130px;">
+        <h4 class="hotelsCard__title text-dark-1 text-16 fw-500"><span>{{ destination.name }}</span></h4>
+        <div class="d-flex justify-between items-center">
+            <div>
+                <div class="text-light-1 text-12 lh-14 mt-10">from</div>
+                <h4 class="text-dark-1 text-14 lh-18 fw-500">{{ destination.get_chepest_price.price }} AED</h4>
+            </div>
+            <div class="mt-10">
+                <button class="button px-20 py-10 h-30 -blue-1 text-blue-1 border-blue-1"
+                        onclick="selectCityDate('{{ destination.city }}', '2024-12-01')"> <!-- Replace '2024-12-01' with actual date logic -->
+                    View
+                </button>
+            </div>
+        </div>
+    </div>
+</a>
+

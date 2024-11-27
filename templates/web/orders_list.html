@@ -1,0 +1,51 @@
+{% extends 'web/partials/base.html' %} {% load static %} 
+{% block title %}
+Booking List
+{% endblock %}
+{% block content %}
+<main>
+    <div class="header-margin"></div>
+    <section class="py-10 pt-40 pb-40 d-flex items-center bg-light-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 table-responsive">
+                    <div class="text-22 fw-500">My Bookings {{user.agent_code}}</div>
+                    {% if order_list %}
+                    <table class="table-4 w-1/1 mt-30">
+                        <thead class="bg-light-2">
+                          <tr>
+                            <th>#</th>
+                            <th>Order ID</th>
+                            <th>Destination </th>
+                            <th>Booked Date</th>
+                            <th>Ticket Count</th>
+                            <th>Total</th>
+                            <th>Tickets</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in order_list %}
+                          <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>#{{i.order_id}}</td>
+                            <td>{{i.get_ticket.ticket.group_price.destination}}</td> 
+                            <td>{{i.booked_date}}</td> 
+                            <td>{{i.get_tickets|length}}</td> 
+                            <td>{{i.payable}} AED</td>
+                            <td><a href="{{i.get_download_tickets_url}}" class="rounded-4 text-blue-1 bg-blue-1-05 text-14 px-15 py-5">Download</a></td>
+                            
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                      {% else %}
+                      <div class="text-14 text-center">
+                        No Orders Found
+                      </div>
+                      {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

@@ -1,0 +1,246 @@
+{% extends 'web/partials/base.html' %} {% load static %} 
+{% block title %}
+    DESTINATION DETAILS
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">">
+
+<main>
+    <div class="header-margin"></div>
+    <section class="py-10 d-flex items-center bg-light-2">
+      <div class="container">
+        <div class="row y-gap-10 items-center justify-between">
+          <div class="col-auto">
+            <div class="row x-gap-10 y-gap-5 items-center text-14 text-light-1">
+              <div class="col-auto">
+                <div class=""> <a href="{% url 'web:index' %}">Home</a></div>
+              </div>
+              <div class="col-auto">
+                <div class="">></div>
+              </div>
+              <div class="col-auto">
+                <div class=""><a href="{% url 'web:destination' destination_detail.pk %}">{{destination_detail.city}}</a></div>
+              </div>
+              <div class="col-auto">
+                <div class="">></div>
+              </div>
+              <div class="col-auto">
+                <div class="text-dark-1">{{destination_detail.name}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-20">
+      <div class="container">
+        <div class="row y-gap-15 justify-between items-end">
+          <div class="col-auto">
+            <h2 class="text-30 fw-600">{{destination_detail.name}}</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pt-20 js-pin-container">
+      <div class="container">
+        <div class="row ">
+          <div class="col-lg-8 col-12">
+            <div class="relative d-flex justify-center overflow-hidden js-section-slider" data-slider-cols="base-1" data-nav-prev="js-img-prev" data-nav-next="js-img-next">
+              <div class="swiper-wrapper">
+                {% for i in destination_detail.get_images %}
+                <div class="swiper-slide">
+                  <img src="{{i.image.url}}" alt="image" class="rounded-4 col-12 h-full object-cover">
+                </div>
+                {% endfor %}
+              </div>
+              <div class="absolute h-full col-11">
+                <button class="section-slider-nav -prev flex-center button -blue-1 bg-white shadow-1 size-40 rounded-full sm:d-none js-img-prev">
+                  <i class="icon icon-chevron-left text-12"></i>
+                </button>
+                <button class="section-slider-nav -next flex-center button -blue-1 bg-white shadow-1 size-40 rounded-full sm:d-none js-img-next">
+                  <i class="icon icon-chevron-right text-12"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row y-gap-10 pt-20">
+              <div class="yBlxq">
+                {% if destination_detail.instant_confirmation%}
+                <div class="jocvwk">
+                  <span role="presentation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="#444" stroke-linecap="round" stroke-linejoin="round" d="M8.667 1.333L2 9.334h6l-.667 5.334 6.667-8H8l.667-5.333z"></path></svg>
+                  </span>
+                  <span class=" label">Instant confirmation</span>
+                </div>
+                {% endif %}
+                {% if destination_detail.mobile_ticket%}
+                <div class="jocvwk">
+                  <span role="presentation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="#444" stroke-linecap="round" stroke-linejoin="round" d="M11.334 1.333H4.667c-.737 0-1.333.597-1.333 1.334v10.666c0 .737.596 1.334 1.333 1.334h6.667c.736 0 1.333-.597 1.333-1.333V2.667c0-.737-.597-1.333-1.333-1.333zM8 12h.007"></path></svg>
+                  </span>
+                  <span class=" label">Mobile ticket</span>
+                </div>
+                {% endif %}
+                {% if destination_detail.duration%}
+                <div class="jocvwk">
+                  <span role="presentation">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path stroke="#444" stroke-linecap="round" stroke-linejoin="round" d="M8 14.667A6.667 6.667 0 108 1.334a6.667 6.667 0 000 13.333z"></path><path stroke="#444" stroke-linecap="round" stroke-linejoin="round" d="M7.5 4v4l4 2"></path></svg>
+                  </span>
+                  <span class=" label">{{destination_detail.duration}}</span>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            <div class="row y-gap-10 ">
+              <div class="col-xl-12 html-div">
+                <p class="text-15 text-dark-1">
+                  {{destination_detail.description|safe}} 
+                </p>
+              </div>
+            </div>
+            <div class="border-top-light mt-20 mb-20"></div>
+            <div class="row x-gap-40 y-gap-40">
+              {% for specification in destination_detail.destinationspecification_set.all %}
+              <div class="col-12 html-div">
+                <h3 class="text-22 fw-500">{{ specification.specification_heading }}</h3>
+                <p class="text-dark-1 text-15 mt-20">
+                  {{ specification.specification_content|safe }}</p>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-12 ">
+            <div class="d-flex justify-end js-pin-content" data-offset="-200">
+              <div class="w-360 lg:w-full  flex-column items-center">
+                <div class="px-20 py-20 mt-10 rounded-16 border-light bg-white shadow-4">             
+                  <div class="row ">
+                    <div class="container ">
+                      <p>from</p>
+                      <h5 class=" text-20 fw-500" >  {{destination_detail.get_price.price}} AED</h5>
+                      <div class="mega__content">
+                        
+                        <div class="row x-gap-20 y-gap-20 pt-20 pb-20">
+                          
+                          <div class=" date-card">
+                              <input type="text" name="validity_end_date" placeholder="Select a date" id="id_validity_end_date">
+                          </div>
+                        </div>
+                        <div class="row x-gap-20 y-gap-20 pt-10 pb-20">
+                          <div class=" date-card" style="    background: #040b39;
+                          color: #fff;
+                          text-align: center;">
+                            <button id="id_check_availability" style="color: #fff;">Check Availability</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row x-gap-20 y-gap-20">
+                  <div id="id_tickets">
+                  </div>
+                </div>
+                <!-- why choose us -->
+                <div class="klsWEe">
+                  <div class="bLdvHU">
+                    <div class=" ceCvEi">
+                      <h2 class=" why-headout-title">Why choose us?</h2>
+                    </div>
+                  </div>
+                  <div class="jpRNJh">
+                    <div class=" chIZyt">
+                      <svg viewBox="0 0 26 26" class="green-tick" aria-hidden="true">
+                        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" fill="#32c75e">
+                        </path>
+                      </svg>
+                      <div class="kFwmrF">
+                        <span class=" pitch-content-heading">Trusted platform used by 100K+ people, each month</span>
+                      </div>
+                    </div>
+                    <div class=" chIZyt">
+                      <svg viewBox="0 0 26 26" class="green-tick" aria-hidden="true">
+                        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" fill="#32c75e">
+
+                        </path>
+                      </svg>
+                      <div class=" kFwmrF">
+                        <span class=" pitch-content-heading">Get the lowest prices and last minute availability</span>
+                      </div>
+                    </div>
+                    <div class=" chIZyt">
+                      <svg viewBox="0 0 26 26" class="green-tick" aria-hidden="true">
+                        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" fill="#32c75e"></path>
+                      </svg>
+                      <div class=" kFwmrF">
+                        <span class=" pitch-content-heading">Discover and connect with 10,000+ experiences</span>
+                      </div>
+                    </div>
+                    <div class=" chIZyt">
+                      <svg viewBox="0 0 26 26" class="green-tick" aria-hidden="true">
+                        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" fill="#32c75e"></path>
+                      </svg><div class=" kFwmrF">
+                        <span class=" pitch-content-heading">Browse verified reviews and professional photographs</span>
+                      </div>
+                    </div>
+                    <div class=" chIZyt">
+                      <svg viewBox="0 0 26 26" class="green-tick" aria-hidden="true">
+                        <path d="m.3,14c-0.2-0.2-0.3-0.5-0.3-0.7s0.1-0.5 0.3-0.7l1.4-1.4c0.4-0.4 1-0.4 1.4,0l.1,.1 5.5,5.9c0.2,0.2 0.5,0.2 0.7,0l13.4-13.9h0.1v-8.88178e-16c0.4-0.4 1-0.4 1.4,0l1.4,1.4c0.4,0.4 0.4,1 0,1.4l0,0-16,16.6c-0.2,0.2-0.4,0.3-0.7,0.3-0.3,0-0.5-0.1-0.7-0.3l-7.8-8.4-.2-.3z" fill="#32c75e"></path>
+                      </svg>
+                      <div class=" kFwmrF">
+                        <span class=" pitch-content-heading">Have a question? Live chat with our experts 24/7</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container mt-20 mb-20">
+      <div class="border-top-light"></div>
+    </div>
+    <section class=" layout-pb-lg">
+      <div class="container">
+        <div class="row justify-between items-end">
+          <div class="col-auto">
+            <div class="sectionTitle -md">
+              <h2 class="sectionTitle__title">Similar Experiences</h2>
+              <p class=" sectionTitle__text mt-5 sm:mt-0">Discover Related Activities and Adventures</p>
+            </div>
+          </div>
+        </div>
+        <div class="row y-gap-30 pt-10 sm:pt-20">
+          {% for destination in destination_detail.get_related %}
+          <div class="col-xl-3 col-lg-3 col-sm-6 ">
+            <div class="card-div">
+              {% include 'web/partials/destination-card.html' %}
+            </div>
+          </div>
+          {% endfor %} 
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  {% endblock %}
+
+  
+  {% block css %}
+ 
+ {% endblock %}
+
+ {% block js %}  
+  <script>
+    var destination = '{{ destination_detail.pk }}';
+    var destination_name = '{{destination_detail.name}}';
+    var max_validity_date = '{{max_validity_date}}'
+  </script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="{% static 'web/js/destination.js' %}"></script>
+
+  {% endblock %}

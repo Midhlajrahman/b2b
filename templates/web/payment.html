@@ -1,0 +1,168 @@
+
+{% extends 'web/partials/base.html' %}
+{% load static %}
+
+{% block content %}
+{% block title %}
+Payment
+{% endblock %}
+
+<main>
+    <div class="header-margin"></div>
+
+    <section class="layout-pt-md layout-pb-md">
+        <div class="container">
+           
+            {% if order.is_ordered %}
+        <div class="row">
+          <div class="col-10 mx-auto text-center">
+            <p>Your order has been placed successfully.</p>
+          </div>
+        </div>
+        {% else %}
+        <form id="payment-form" action="" method="post">
+          {% csrf_token %}
+          <div class="row justify-content-between">
+            <div class="col-12 col-lg-6 col-md-12 mx-auto">
+              <div class="card mb-4 gray">
+                <div class="card-body p-4">
+                  <ul class="list-group list-group-sm list-group-flush-y list-group-flush-x">
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Name :</span> <span class="ml-auto text-dark ft-medium">{{order.full_name}} </span>
+                    </li>
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Destination :</span> <span class="ml-auto text-dark ft-medium">{{order.get_ticket.ticket.group_price.destination}} </span>
+                    </li>
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Booked Date :</span> <span class="ml-auto text-dark ft-medium">{{order.booked_date}} </span>
+                    </li>
+                    {% if order.guest_adult %}
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Adult :</span> <span class="ml-auto text-dark ft-medium">{{order.guest_adult}} </span>
+                    </li>
+                    {% endif %}
+                    {% if order.guest_child %}
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Child :</span> <span class="ml-auto text-dark ft-medium">{{order.guest_child}} </span>
+                    </li>
+                    {% endif %}
+                    <li class="list-group-item d-flex text-dark ft-regular">
+                      <span>Total :</span> <span class="ml-auto text-dark ft-medium text-22">{{order.payable}} AED</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+    
+              <button id="checkout-button" class="btn btn-block btn-info mb-3 h-50" type="submit">Make Payment</button>
+            </div>
+          </div>
+        </form>
+        {% endif %}
+        </div>
+    </section>
+</main>
+{% endblock %}
+{% block css %}
+<style>
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+.mr-auto, .mx-auto {
+    margin-right: auto!important;
+}
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+.p-4 {
+    padding: 1.5rem!important;
+}
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.list-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.text-dark {
+    color: #343a40!important;
+}
+.ml-auto, .mx-auto {
+    margin-left: auto!important;
+}
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+.btn-block {
+    display: block;
+    width: 100%;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+}
+.btn-info {
+    color: #fff;
+    background-color: #117a8b;
+    border-color: #117a8b;
+}
+.btn-info:hover {
+    color: #fff;
+    background-color: green;
+    border-color: green;
+}
+</style>
+{% endblock %}
+ {% block js %}
+ <script src="https://js.stripe.com/v3/"></script>
+  <script>
+    var stripe = Stripe('{{ STRIPE_PUBLIC_KEY }}');
+    var checkoutButton = document.getElementById('checkout-button');
+
+    checkoutButton.addEventListener('click', function () {
+      stripe.redirectToCheckout({
+        sessionId: '{{ session_id }}'
+      }).then(function (result) {
+        
+      });
+    });
+  </script>
+{% endblock %}

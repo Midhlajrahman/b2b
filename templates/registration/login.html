@@ -1,0 +1,113 @@
+{% extends "web/partials/base.html" %}
+{% load i18n %}
+
+<!-- Include SweetAlert JS and CSS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% block title %}{% trans "Log in" %}{% endblock %}
+
+{% block content %}
+<h4 class="mb-2 fw-bold fz-20">Welcome back!</h4>
+<h6 class="mb-4">Please sign in to continue</h6>
+<form method="post" action="">
+    {% csrf_token %}
+    <section class="layout-pt-lg layout-pb-lg bg-blue-2">
+        <div class="container">
+            <div class="row justify-center">
+                <div class="col-xl-6 col-lg-7 col-md-9">
+                    <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
+                        <div class="row y-gap-20">
+                            <div class="col-12">
+                                <h1 class="text-22 fw-500">Welcome back</h1>
+                                <p class="mt-10">Don't have an account yet? <a href="{% url 'registration_register' %}" class="text-blue-1">Sign up for free</a></p>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <input type="text" name="username" required>
+                                    <label class="lh-1 text-14 text-light-1">Username</label>
+                                    {% if form.username.errors %}
+                                        <span class="text-danger">{{ form.username.errors.as_text }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <input type="password" name="password" required>
+                                    <label class="lh-1 text-14 text-light-1">Password</label>
+                                    {% if form.password.errors %}
+                                        <span class="text-danger">{{ form.password.errors.as_text }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="form-input">
+                                    <input type="text" name="agent_code" required>
+                                    <label class="lh-1 text-14 text-light-1">Agent Code</label>
+                                    {% if form.agent_code.errors %}
+                                        <span class="text-danger">{{ form.agent_code.errors.as_text }}</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <a href="{% url 'auth_password_reset' %}" class="text-14 fw-500 text-blue-1 underline">Forgot your password?</a>
+                            </div>
+
+                            <div class="col-auto">
+                                <button type="submit" class="button -md -blue-1 bg-dark-3 text-white">Login</button>
+                                <p>{% trans "Not a member?" %} <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+{% if form.non_field_errors %}
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Error',
+        text: '{{ form.non_field_errors.as_text }}',
+        confirmButtonText: 'OK'
+    });
+</script>
+{% endif %}
+
+
+{% endblock %}
+
+
+
+{% comment %}
+**registration/login.html**
+
+It's your responsibility to provide the login form in a template called
+registration/login.html by default. This template gets passed four
+template context variables:
+
+``form``
+A Form object representing the login form. See the forms
+documentation for more on Form objects.
+
+``next``
+The URL to redirect to after successful login. This may contain a
+query string, too.
+
+``site``
+The current Site, according to the SITE_ID setting. If you don't
+have the site framework installed, this will be set to an instance
+of RequestSite, which derives the site name and domain from the
+current HttpRequest.
+
+``site_name``
+An alias for site.name. If you don't have the site framework
+installed, this will be set to the value of
+request.META['SERVER_NAME']. For more on sites, see The
+"sites" framework.
+{% endcomment %}

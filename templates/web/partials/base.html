@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-x="html" data-x-toggle="html-overflow-hidden">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+      {% block title %} {% endblock %} | B2B Holidays
+    </title>
+    <meta name="title" content="B2B Holidays" />
+    <meta name="description" content="Buy tickets for popular tourist destinations with B2B Holidays. Explore top attractions and book your tickets today." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://b2bholiday.geany.website/" />
+    <meta property="og:title" content="B2B Holidays" />
+    <meta property="og:description" content="Buy tickets for popular tourist destinations with B2B Holidays. Explore top attractions and book your tickets today." />
+    <meta property="og:image" content="https://b2bholiday.geany.website/static/web/img/b2bmeta.png" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://b2bholiday.geany.website/" />
+    <meta property="twitter:title" content="B2B Holidays" />
+    <meta property="twitter:description" content="Buy tickets for popular tourist destinations with B2B Holidays. Explore top attractions and book your tickets today." />
+    <meta property="twitter:image" content="https://b2bholiday.geany.website/static/web/img/b2bmeta.png" />
+
+    <!-- Meta Tags End-->
+    <link rel="icon" href="{% static 'web/img/favicon-100x100.png' %}" sizes="192x192" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{% static 'web/css/vendors.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'web/css/custom.css' %}">
+    {% block css %} {% endblock %}
+  </head>
+
+  <body>
+    <div class="preloader js-preloader">
+      <div class="preloader__wrap">
+        <div class="preloader__icon">
+          <svg width="38" height="37" viewBox="0 0 38 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+          
+            <defs>
+              <clipPath id="clip0_1_41">
+                <rect width="36.92" height="36.92" fill="white" transform="translate(0.540039)" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+      </div>
+
+      <div class="preloader__title">B2B Holidays</div>
+    </div>
+    
+    {% if is_index %}
+    {% include 'web/partials/header.html' %}
+      {% else %}
+    {% include 'web/partials/header2.html' %}
+      {% endif %}
+      
+    {% block content %}
+    {% endblock %}
+
+    {% include 'web/partials/footer.html' %}
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAz77U5XQuEME6TpftaMdX0bBelQxXRlM"></script>
+    <script src="https://cdn.jsdelivr.net/npm/markerclustererplus@2.1.4/dist/markerclusterer.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.15.3/dist/sweetalert2.all.min.js"></script>
+    <script src="{% static 'web/js/vendors.js' %}"></script>
+    <script src="{% static 'web/js/main.js' %}"></script>
+    <script src="{% static 'web/js/sweet.js' %}"></script>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+{% comment %} <script>
+  $(document).ready(function() {
+      $('.js-calendar-el-calendar').datepicker({
+          dateFormat: 'yy-mm-dd',  // Set date format to YYYY-MM-DD
+          onSelect: function(dateText) {
+              console.log('Selected date: ' + dateText);
+              $('.js-first-date').text(dateText);  // Update the display with the selected date
+          }
+      });
+  });
+</script> {% endcomment %}
+{% comment %} <script>
+
+    $(document).ready(function() {
+        $('.js-calendar-el-calendar').datepicker({
+            dateFormat: 'yy-mm-dd',  // Set date format to YYYY-MM-DD
+            onSelect: function(dateText) {
+                console.log('Selected date: ' + dateText);
+                
+                // Update text and data-date attribute for each element with .js-first-date
+                $('.js-first-date').each(function() {
+                    $(this).text(dateText);            // Update visible text
+                    $(this).attr('data-date', dateText); // Update data-date attribute
+                });
+            }
+        });
+    });
+    </script> {% endcomment %}
+    {% block js %}  {% endblock %}
+  </body>
+
+</html>

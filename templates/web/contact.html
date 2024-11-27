@@ -1,0 +1,85 @@
+{% extends 'web/partials/base.html' %}
+{% load static %}
+
+{% block content %}
+  {% block title %}
+    CONTACT
+  {% endblock %}
+  <section class="section-bg layout-pt-lg layout-pb-lg mt-60 ">
+    <div class="section-bg__item col-12">
+      <img src="{% static 'web/img/pages/about/contact.jpg' %}" alt="image">
+    </div>
+
+    <div class="container">
+      <div class="row justify-center text-center">
+        <div class="col-xl-6 col-lg-8 col-md-10">
+          <h1 class="text-40 md:text-25 fw-600 text-white">Contact Us</h1>
+          <div class="text-white mt-15">Your trusted trip companion</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <main>
+    <section class="layout-pt-md layout-pb-lg">
+      <div class="container">
+        <div class="row x-gap-80 y-gap-20 justify-between">
+          <div class="col-lg-8">
+            <form method="post" class="contact__form form contact" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="col-xl-12">
+                <div class="row y-gap-30">
+                  <div class="col-xl-6">
+                    <div class="form-input">
+                      {{ form.name }}
+                      <label class="lh-1 text-16 text-light-1">Name</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-6">
+                    <div class="form-input">
+                      {{ form.email }}
+                      <label class="lh-1 text-16 text-light-1">Email</label>
+                    </div>
+                  </div>
+                  <div class="col-xl-12">
+                    <div class="form-input">
+                      {{ form.subject }}
+                      <label class="lh-1 text-16 text-light-1">Subject</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-input">
+                      {{ form.your_message }}
+                      <label class="lh-1 text-16 text-light-1">Message</label>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <button type="submit" class="button -md -dark-1 bg-blue-1 text-white">
+                      Submit <div class="icon-arrow-top-right ml-15"></div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4 col-12">
+            <div class="col-12">
+              <div class="text-14 text-light-1">Phone</div>
+              <div class="text-18 fw-500 mt-10">+971 4546 3120</div>
+            </div>
+            <div class="col-12">
+              <div class="text-14 text-light-1">Email</div>
+              <div class="text-18 fw-500 mt-10">book@holidayofferz.com</div>
+            </div>
+            <div class="col-12">
+              <div class="text-14 text-light-1">Address</div>
+              <div class="text-18 fw-500 mt-10">holidayofferz.com <br>
+                P.O.Box: 123556, Al Karama,
+                Dubai, U.A.E</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

@@ -1,0 +1,228 @@
+{% extends 'web/partials/base.html' %}
+{% load static %} 
+
+{% block title %}
+    CHECK OUT 
+{% endblock %}
+
+{% block content %} 
+<main>
+  <div class="header-margin"></div>
+    <section class=" layout-pb-md">
+      <div class="container">
+        <div class="row">
+         
+            <div class="col-xl-7 col-lg-8">
+              <h2 class="text-20 fw-500 ">Guests</h2>
+              <p class="kIPami">Likely to sell out</p>
+              <div class="py-15 px-20 mt-15 rounded-4 text-13 bg-blue-1-05">
+                <a href="#" class="text-blue-1 fw-500">{{destination.common_age_note}} </a><br>
+              </div>
+              <form method="post">
+                {% csrf_token %}
+                <div class="bg-white py-20 ">
+                  {% if guist_count > 0 %}
+                  <div class="row y-gap-10 justify-between items-center">
+                    <div class="col-auto" style="min-width: 35%;">
+                      <div class="text-15 fw-500">Adults ({{destination.get_price.price|default:'000'}} AED)</div>
+                      <div class="text-14 lh-12 text-light-1 mt-5">{{destination.get_price.age_note|default:''}}</div>
+                    </div>
+                    
+                    <div class="col-auto">
+                      <div class="d-flex items-center ">
+                        <button class="button -outline-blue-1 text-blue-1 size-30 rounded-4 decrease">
+                          <i class="icon-minus text-12"></i>
+                        </button>
+                        
+                        <div class="flex-center size-20 ml-15 mr-15">
+                          <div class="text-15 count">1</div>
+                        </div>
+                        <input type="hidden" name="ad-count" value="" id="h_ad_count">
+                        <button class="button -outline-blue-1 text-blue-1 size-30 rounded-4 increase">
+                          <i class="icon-plus text-12"></i>
+                      </button></div>
+                    </div>
+                    <div class="col-auto"style="min-width: 25%;">
+                      <div  id ="ad_total_price" class="text-15 lh-12 fw-500"></div>
+                    </div>
+                  </div>
+
+                  <div class="border-top-light mt-20 mb-20"></div>
+                  {% endif %}
+                  {% if child_count > 0 %}
+                  <div class="row y-gap-10 justify-between items-center">
+                    <div class="col-auto" style="min-width: 35%;">
+                      <div class="text-15 lh-12 fw-500">Children ({{destination.get_child_price.price|default:'000'}} AED)</div>
+                      <div class="text-14 lh-12 text-light-1 mt-5">{{destination.get_child_price.age_note|default:''}}</div>
+                    </div>
+
+                    <div class="col-auto">
+                      <div class="d-flex items-center ">
+                        
+                        <button class="button -outline-blue-1 text-blue-1 size-30 rounded-4 decrease-child">
+                          <i class="icon-minus text-12"></i>
+                        </button>
+                        
+                        <div class="flex-center size-20 ml-15 mr-15">
+                          <div class="text-15 count-child">0</div>
+                        </div>
+                        <input type="hidden" name="child-count" id="h_child_count" value="">
+                        <button class="button -outline-blue-1 text-blue-1 size-30 rounded-4 increase-child">
+                          <i class="icon-plus text-12"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-auto"style="min-width: 25%;">
+                      <div id ="child_total_price" class="text-15 lh-12 fw-500">= 0 AED</div>
+                    </div>
+                  </div>
+                  {% endif %}
+                </div>
+                <h2 class="text-20 fw-500 ">Lead guest details</h2>
+                
+                <div class="row x-gap-20 y-gap-20 pt-20">
+                  <div class="col-md-6">
+                    <div class="form-input ">
+                      {{form.full_name}}
+                      <label class="lh-1 text-16 text-light-1">Full Name</label>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-input ">
+                      {{form.phone_number}}
+                      <label class="lh-1 text-16 text-light-1">Phone Number</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-input ">
+                      {{form.email}}
+                      <label class="lh-1 text-16 text-light-1">Email</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="form-input ">
+                      {{form.country}}
+                      <label class="lh-1 text-16 text-light-1">Country</label>
+                    </div>
+                  </div>
+                  
+
+                  <div class="col-12">
+                    <div class="row y-gap-20 items-center justify-between">
+                      <div class="col-auto">
+                        <div class="text-14 text-light-1">
+                          By proceeding with this booking, I agree to B2BHolidays Terms of Use and Privacy Policy.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+
+            <div class="col-xl-5 col-lg-4">
+              <div class="klsWEe ml-80 lg:ml-40 md:ml-0">
+                <div class="">
+                  <div class=" srqnW">
+                    <div class=" gHmIUk">
+                      <div class=" hGvfyF">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="date and time"><g><g><path d="M3 8H18" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M16.5 5H4.5C4.10218 5 3.72064 5.15804 3.43934 5.43934C3.15804 5.72064 3 6.10218 3 6.5V15.5C3 15.8978 3.15804 16.2794 3.43934 16.5607C3.72064 16.842 4.10218 17 4.5 17H16.5C16.8978 17 17.2794 16.842 17.5607 16.5607C17.842 16.2794 18 15.8978 18 15.5V6.5C18 6.10218 17.842 5.72064 17.5607 5.43934C17.2794 5.15804 16.8978 5 16.5 5Z" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M7 3V5" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path id="Vector_4" d="M14 3V5" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path></g></g>
+                        </svg>
+                        <div class=" izBCtR" id="id_selected-date"></div>
+                      </div>
+                      <a  onclick="history.back()" title="Edit date"  >
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="edit date and time"><g><path d="M8 13.3333H14" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M11 2.33334C11.2652 2.06813 11.6249 1.91913 12 1.91913C12.1857 1.91913 12.3696 1.95571 12.5412 2.02678C12.7128 2.09785 12.8687 2.20202 13 2.33334C13.1313 2.46466 13.2355 2.62057 13.3066 2.79215C13.3776 2.96373 13.4142 3.14762 13.4142 3.33334C13.4142 3.51906 13.3776 3.70296 13.3066 3.87454C13.2355 4.04612 13.1313 4.20202 13 4.33334L4.66667 12.6667L2 13.3333L2.66667 10.6667L11 2.33334Z" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path></g></svg>
+                      </a>
+                    </div>
+                    <div class=" gHmIUk">
+                      <div class=" hGvfyF">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="tour preference" style="min-width: 20px; min-height: 20px;"><g><g><path d="M8 8H13" stroke="#444444" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M8 13H13" stroke="#444444" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M16 11C16 9.895 16.895 9 18 9V5C18 4.448 17.552 4 17 4H4C3.448 4 3 4.448 3 5V8.5C4.105 8.5 5 9.395 5 10.5C5 11.605 4.105 12.5 3 12.5V16C3 16.552 3.448 17 4 17H17C17.552 17 18 16.552 18 16V13C16.895 13 16 12.105 16 11Z" stroke="#444444" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></g></g>
+                        </svg>
+                        <div class=" izBCtR">{{destination}}</div>
+                      </div>
+                      <a onclick="history.back()" title="Edit date"  >
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="edit tour preference"><g><path d="M8 13.3333H14" stroke="#444444" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M11 2.33334C11.2652 2.06813 11.6249 1.91913 12 1.91913C12.1857 1.91913 12.3696 1.95571 12.5412 2.02678C12.7128 2.09785 12.8687 2.20202 13 2.33334C13.1313 2.46466 13.2355 2.62057 13.3066 2.79215C13.3776 2.96373 13.4142 3.14762 13.4142 3.33334C13.4142 3.51906 13.3776 3.70296 13.3066 3.87454C13.2355 4.04612 13.1313 4.20202 13 4.33334L4.66667 12.6667L2 13.3333L2.66667 10.6667L11 2.33334Z" stroke="#444444" stroke-linecap="round" stroke-linejoin="round">
+                          </path></g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="jpRNJh">
+                  <div class="px-20 py-20  ">
+                    <div class="text-20 fw-500 mb-20">Your price summary</div>
+                    {% if guist_count > 0 %}
+                    <div class="row y-gap-5 justify-between">
+                      <div class="col-auto">
+                        <div class="text-15 ">Adult</div>
+                      </div>
+                      <div class="col-auto">
+                        <div class="text-15 sum-count">0</div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if child_count > 0 %}
+                    <div class="row y-gap-5 justify-between pt-5">
+                      <div class="col-auto">
+                        <div class="text-15">Child</div>
+                      </div>
+                      <div class="col-auto">
+                        <div class="text-15 sum-child ">0</div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="row y-gap-5 justify-between pt-5">
+                      <div class="col-auto">
+                        <div class="text-15">Booking fees</div>
+                      </div>
+                      <div class="col-auto">
+                        <div class="text-15">FREE</div>
+                      </div>
+                    </div>
+  
+                    <div class="px-20 py-20 bg-blue-2 rounded-16 mt-20">
+                      <div class="row y-gap-5 justify-between">
+                        <div class="col-auto">
+                          <div class="text-18 lh-13 fw-500">Price</div>
+                        </div>
+                        <div class="col-auto">
+                          <div class="text-18 lh-13 fw-500 total-price">{{total_price}}</div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="col-12 mt-20">
+                        <button type="submit" class="submit-btn button -dark-1 py-15 px-35 h-60 col-12 rounded-16 bg-blue-1 text-white">
+                          Confirm & Pay<div class="icon-shield ml-15"></div>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            </div>
+        </div>
+      </div>
+    </section>
+</main>
+{% endblock %}
+
+{% block js %}  
+<script >
+  const parsedDate = new Date("{{select_date}}");
+  const ad_price = "{{destination.get_price.price}}";
+  const child_price = "{{ destination.get_child_price.price }}";
+  const datachilldMaxLimit = "{{ child_count }}";
+  const dataMaxLimit = "{{ guist_count }}";
+</script>
+<script src="{% static 'web/js/checkout.js' %}"></script>
+{% endblock %}

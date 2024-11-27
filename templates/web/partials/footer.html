@@ -1,0 +1,92 @@
+{% load static %}
+
+<footer class="footer -type-1 text-white bg-dark-2">
+  <div class="container">
+    <div class="pt-60 pb-60">
+      <div class="row y-gap-40 justify-between xl:justify-start">
+        <div class="col-xl-6 col-lg-6 col-sm-6">
+          <h5 class="text-18 fw-500 mb-30">Contact Us</h5>
+
+          <div class="mt-30">
+            <div class="d-flex y-gap-10 x-gap-10">
+              <i class="text-18  mt-10 fa-solid fa-location-dot"></i>
+              <div class="text-18 fw-500  ml-10">P.O.Box : 123556, <br>
+                Al Karama, Dubai, U.A.E</div>
+            </div>
+            <div class="d-flex y-gap-10 x-gap-10">
+              <i class="text-18  mt-10 fa-brands fa-whatsapp"></i>
+              <div class="text-18 fw-500  ml-10">            <a
+                href="https://wa.me/97145463120"
+                target="_blank"
+                class="text-18 fw-500 mt-5"
+                >+971 4546 3120</a
+              ></div>
+            </div>
+
+            <div class="d-flex y-gap-10 x-gap-10">
+              <i class="text-18  mt-10 fa-solid fa-envelope"></i>
+              <div class="text-18 fw-500  ml-10">
+                 <a href="mailto:book@holidayofferz.com" class="text-18 fw-500 mt-5"
+                >book@holidayofferz.com</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-sm-6 col-6">
+          <h5 class="text-18 fw-500 mb-30">Quick Links</h5>
+          <div class="d-flex y-gap-10 flex-column">
+            <!-- <a href="https://www.holidayofferz.com/about/">About Us</a> -->
+            <a href="{% url 'web:cities' %}">Cities</a>
+            <a href="{% url 'web:destinations' %}">Destinations</a>
+            <a href="{% url 'web:index' %}#updates">Updates</a>
+            <a href="{% url 'web:contact' %}">Contact</a>
+          </div>
+        </div>
+
+        <div class="col-xl-3 col-lg-3 col-sm-6 col-6">
+          <h5 class="text-18 fw-500 mb-30 ">Other Info</h5>
+          <div class="d-flex y-gap-10 flex-column">
+            <a href="{% url 'web:contact' %}">Contact</a>
+            <a href="{% url 'web:index' %}#updates">Updates</a>
+            <a href="https://www.holidayofferz.com/privacy-policy/">Privacy Policy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-20 border-top-white-15">
+      <div class="row justify-between items-center y-gap-10">
+        <div class="col-auto">
+          <div class="row x-gap-30 y-gap-10">
+            <div class="col-auto">
+              <div class="d-flex items-center">
+                © B2B Holidays {% now 'Y' %}. All rights reserved.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <div class="row y-gap-10 items-center">
+            <div class="col-auto">
+              <div class="d-flex x-gap-20 items-center">
+                <a href="https://www.facebook.com/holidayofferz/"
+                  ><i class="icon-facebook text-14"></i
+                ></a>
+                <a
+                  href="https://twitter.com/i/flow/login?redirect_after_login=%2FHolidayOfferz"
+                  ><i class="icon-twitter text-14"></i
+                ></a>
+                <a href="https://www.instagram.com/holidayofferz/"
+                  ><i class="icon-instagram text-14"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

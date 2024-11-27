@@ -1,0 +1,394 @@
+{% extends 'web/partials/base.html' %} {% load static %} 
+
+{% block title %}
+  CITIES
+{% endblock %}
+{% block content %}
+{% comment %} <section class="layout-pt-xl layout-pb-md">
+    <div class="container">
+      <div class="row y-gap-20 justify-center text-center">
+        <div class="col-auto">
+          <div class="sectionTitle -md">
+            <h2 class="sectionTitle__title">Discover All Cities Worldwide
+            </h2>
+            <p class=" sectionTitle__text mt-5 sm:mt-0">These popular destinations have a lot to offer</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row y-gap-30 pt-40">
+
+        {% for citys in city %}
+
+        <div class="w-1/5 lg:w-1/3 sm:w-1/2">
+
+          <a href="{% url 'web:destination' citys.pk %}" class="citiesCard -type-2 ">
+            <div class="citiesCard__image rounded-4 ratio ratio-23:18">
+              <img class="img-ratio rounded-4 js-lazy" data-src="{{citys.image.url}}" src="{% url 'web:destination' citys.pk %}" alt="image">
+            </div>
+
+            <div class="citiesCard__content mt-10">
+              <h4 class="text-18 lh-13 fw-500 text-dark-1">{{citys.name}}</h4>
+              
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section> {% endcomment %}
+
+
+
+  <section class="section-bg  pb-40 relative z-5 ">
+    <div class="section-bg__item col-12">
+      <img src="{% static 'web/img/misc/bg-1.png' %}" alt="image" class="w-full h-full object-cover">
+    </div>
+
+    <div class="container layout-pt-xl">
+      <div class="row">
+        <div class="col-12">
+          <div class="text-center">
+            <h1 class="text-30 fw-600 text-white banner-title">Find Your Dream Luxury Hotel</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="layout-pt-md layout-pb-lg city-card">
+    <div class="container">
+      {% comment %} <div class="row y-gap-20 justify-between items-center">
+        <div class="col-auto">
+          <div class="row x-gap-20 y-gap-10 items-center">
+            <div class="col-auto">
+              <div class="text-18 fw-500">Filter</div>
+            </div>
+
+            <div class="col-auto">
+              <div class="row x-gap-15 y-gap-15">
+                <div class="col-auto">
+
+                  <div class="dropdown js-dropdown js-price-active">
+                    <div class="dropdown__button d-flex items-center text-14 rounded-100 border-light px-15 h-34" data-el-toggle=".js-price-toggle" data-el-toggle-active=".js-price-active">
+                      <span class="js-dropdown-title">Price</span>
+                      <i class="icon icon-chevron-sm-down text-7 ml-10"></i>
+                    </div>
+
+                    <div class="toggle-element -dropdown js-click-dropdown js-price-toggle">
+                      <div class="text-15 y-gap-15 js-dropdown-list">
+
+                        <div><a href="#" class="d-block js-dropdown-link">Less than $500</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">$500 - $1000</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">$1000 - $2000</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">$2000+</a></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                  <div class="dropdown js-dropdown js-amenities-active">
+                    <div class="dropdown__button d-flex items-center text-14 rounded-100 border-light px-15 h-34" data-el-toggle=".js-amenities-toggle" data-el-toggle-active=".js-amenities-active">
+                      <span class="js-dropdown-title">Amenities</span>
+                      <i class="icon icon-chevron-sm-down text-7 ml-10"></i>
+                    </div>
+
+                    <div class="toggle-element -dropdown js-click-dropdown js-amenities-toggle">
+                      <div class="text-15 y-gap-15 js-dropdown-list">
+
+                        <div><a href="#" class="d-block js-dropdown-link">Swimming pool</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Laundry</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Outdoor spaces</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Security</a></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                  <div class="relative js-form-dd">
+                    <button class="d-flex items-center px-15 py-5 lh-16 text-14 rounded-100 border-light -dd-button" data-x-dd-click="dropdownRating">
+                      Star Rating
+                      <i class="icon icon-chevron-sm-down text-7 ml-15"></i>
+                    </button>
+
+                    <div class="dropRating" data-x-dd="dropdownRating" data-x-dd-toggle="-is-active">
+                      <div class="px-20 py-20 rounded-4 bg-white border-light">
+                        <h5 class="text-18 fw-500 mb-10">Star Rating</h5>
+
+                        <div class="row x-gap-10 y-gap-10 pt-10">
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">1</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">2</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">3</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">4</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">5</a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                  <div class="relative js-form-dd">
+                    <button class="d-flex items-center px-15 py-5 lh-16 text-14 rounded-100 border-light -dd-button" data-x-dd-click="dropdownRating">
+                      Guest Rating
+                      <i class="icon icon-chevron-sm-down text-7 ml-15"></i>
+                    </button>
+
+                    <div class="dropRating" data-x-dd="dropdownRating" data-x-dd-toggle="-is-active">
+                      <div class="px-20 py-20 rounded-4 bg-white border-light">
+                        <h5 class="text-18 fw-500 mb-10">Guest Rating</h5>
+
+                        <div class="row x-gap-10 y-gap-10 pt-10">
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">1</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">2</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">3</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">4</a>
+                          </div>
+
+                          <div class="col-auto">
+                            <a href="#" class="button -blue-1 bg-blue-1-05 text-blue-1 py-10 px-20 rounded-100">5</a>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                  <div class="dropdown js-dropdown js-style-active">
+                    <div class="dropdown__button d-flex items-center text-14 rounded-100 border-light px-15 h-34" data-el-toggle=".js-style-toggle" data-el-toggle-active=".js-style-active">
+                      <span class="js-dropdown-title">Style</span>
+                      <i class="icon icon-chevron-sm-down text-7 ml-10"></i>
+                    </div>
+
+                    <div class="toggle-element -dropdown js-click-dropdown js-style-toggle">
+                      <div class="text-15 y-gap-15 js-dropdown-list">
+
+                        <div><a href="#" class="d-block js-dropdown-link">Modern</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Bohemian</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Minimalist</a></div>
+
+                        <div><a href="#" class="d-block js-dropdown-link">Contemporary</a></div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                  <div class="relative js-form-dd">
+                    <button class="d-flex items-center px-15 py-5 lh-16 text-14 rounded-100 border-light" data-x-dd-click="dropdownNeighbor">
+                      Neighborhood
+                      <i class="icon icon-chevron-sm-down text-7 ml-15"></i>
+                    </button>
+
+                    <div class="dropRating" data-x-dd="dropdownNeighbor" data-x-dd-toggle="-is-active">
+                      <div class="px-20 py-20 rounded-4 bg-white border-light">
+                        <h5 class="text-15 fw-500 mb-15">Neighborhood</h5>
+
+                        <div class="sidebar-checkbox">
+
+                          <div class="row y-gap-10 items-center justify-between">
+                            <div class="col-auto">
+
+                              <div class="d-flex items-center">
+                                <div class="form-checkbox ">
+                                  <input type="checkbox" name="name">
+                                  <div class="form-checkbox__mark">
+                                    <div class="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+
+                                <div class="text-15 ml-10">Central London</div>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="text-15 text-light-1">92</div>
+                            </div>
+                          </div>
+
+                          <div class="row y-gap-10 items-center justify-between">
+                            <div class="col-auto">
+
+                              <div class="d-flex items-center">
+                                <div class="form-checkbox ">
+                                  <input type="checkbox" name="name">
+                                  <div class="form-checkbox__mark">
+                                    <div class="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+
+                                <div class="text-15 ml-10">Guests&#39; favourite area </div>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="text-15 text-light-1">45</div>
+                            </div>
+                          </div>
+
+                          <div class="row y-gap-10 items-center justify-between">
+                            <div class="col-auto">
+
+                              <div class="d-flex items-center">
+                                <div class="form-checkbox ">
+                                  <input type="checkbox" name="name">
+                                  <div class="form-checkbox__mark">
+                                    <div class="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+
+                                <div class="text-15 ml-10">Westminster Borough</div>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="text-15 text-light-1">21</div>
+                            </div>
+                          </div>
+
+                          <div class="row y-gap-10 items-center justify-between">
+                            <div class="col-auto">
+
+                              <div class="d-flex items-center">
+                                <div class="form-checkbox ">
+                                  <input type="checkbox" name="name">
+                                  <div class="form-checkbox__mark">
+                                    <div class="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+
+                                <div class="text-15 ml-10">Kensington and Chelsea </div>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="text-15 text-light-1">78</div>
+                            </div>
+                          </div>
+
+                          <div class="row y-gap-10 items-center justify-between">
+                            <div class="col-auto">
+
+                              <div class="d-flex items-center">
+                                <div class="form-checkbox ">
+                                  <input type="checkbox" name="name">
+                                  <div class="form-checkbox__mark">
+                                    <div class="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+
+                                <div class="text-15 ml-10">Oxford Street </div>
+
+                              </div>
+
+                            </div>
+
+                            <div class="col-auto">
+                              <div class="text-15 text-light-1">679</div>
+                            </div>
+                          </div>
+
+                        </div>
+
+                        <a href="#" class="d-block text-14 fw-500 underline text-blue-1 mt-15">Show all 30</a>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div> {% endcomment %}
+
+      {% comment %} <div class="border-top-light mt-30 mb-30"></div> {% endcomment %}
+
+      <div class="row y-gap-30">
+        {% for citys in city %}
+        <div class="col-lg-3 col-sm-6">
+            <a href="{% url 'web:destination' citys.pk %}" class="hotelsCard -type-1">
+                <div class="hotelsCard__image">
+                    <div class="cardImage ratio ratio-1:1 rounded-4">
+                        <div class="cardImage__content position-relative">
+                            <img class="rounded-6 col-12" src="{{citys.image.url}}" alt="image">
+                            <div class="gradient-overlay"></div>
+                        </div>
+                        <div class="cardImage__wishlist">
+                            <h4 class="hotelsCard__title text-white text-18 lh-16 fw-500">
+                                <span>{{citys.name}}</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+    </div>
+  </section>
+
+
+  {% endblock %}

@@ -1,0 +1,143 @@
+{% extends 'web/partials/base.html' %}
+{% load static %}
+
+{% block content %}
+  
+{% block title %}
+    DESTINATION
+  {% endblock %}
+
+{% comment %} 
+  <div class="container mt-90">
+    <div class="row y-gap-20 justify-between items-end">
+      <div class="col-auto">
+        <div class="sectionTitle -md">
+            <h2>Results for "{{ form.cleaned_data.query }}"</h2>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+ 
+
+ 
+
+  {% if results %}
+      
+      <section class="layout-pb-sm">
+        <div class="container">
+          
+          <div class="row y-gap-30 pt-10 sm:pt-10">
+            {% for destinations in results %}
+            <div class="col-xl-3 col-lg-3 col-sm-6">
+              <a href="{% url 'web:destination-details' destinations.pk %}" class="hotelsCard -type-1">
+                <div class="hotelsCard__image">
+                  <div class="cardImage ratio ratio-1:1">
+                    <div class="cardImage__content">
+                      {% for image in destinations.tourist_image.all %}
+                      <img class="rounded-4 col-12" src="{{ image.image.url }}" alt="image">
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="hotelsCard__content mt-10">
+                  <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                    <span>{{ destinations.name }}</span>
+                  </h4>
+                  
+                  <div class="mt-5">
+                
+                    <div class="fw-500">
+                      Starting from <span class="text-light-1">₹ {{ destinations.get_chepest_price.price }}</span>
+                    </div>
+                
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+  {% else %}
+      <p>No results found.</p>
+  {% endif %} {% endcomment %}
+
+  {% comment %} <div class="container">
+    <h1>Results for {{ city }}</h1>
+    <p>Date: {{ date }}</p>
+    
+ 
+    {% if available_packages %}
+        <h2>Available Packages</h2>
+        <ul>
+            {% for package in available_packages %}
+                <li>{{ package.desination }} - {{ package.price }} AED</li>
+            {% empty %}
+                <li>No packages available for the selected date.</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No results found for your search.</p>
+    {% endif %}
+</div> {% endcomment %}
+
+
+
+
+  <div class="container mt-90">
+    <div class="row y-gap-20 justify-between items-end">
+      <div class="col-auto">
+        <div class="sectionTitle -md">
+            <h2>Results for " {{ city }} - {{date}}"</h2>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+ 
+
+ 
+
+  {% if available_packages %}
+    {% with package=available_packages.first %}
+      <section class="layout-pb-sm">
+        <div class="container">
+          
+          <div class="row y-gap-30 pt-10 sm:pt-10">
+      
+            <div class="col-xl-3 col-lg-3 col-sm-6">
+              <a href="{% url 'web:destination-details' package.destination.pk %}" class="hotelsCard -type-1">
+                <div class="hotelsCard__image">
+                  <div class="cardImage ratio ratio-1:1">
+             <div class="cardImage__content">
+             
+                      <img id="" class="rounded-4 col-12" src="{{package.destination.city.image.url}}" alt="image">
+           
+           
+                    </div> 
+                </div>
+                <div class="hotelsCard__content mt-10">
+                  <h4 class="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
+                    <span>{{ package.destination }}</span>
+                  </h4>
+                  
+                  <div class="mt-5">
+                
+                    <div class="fw-500">
+                      {% comment %} Starting from <span class="text-light-1">₹ {{ destinations.get_chepest_price.price }}</span> {% endcomment %}
+                    </div>
+                
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+      {% endwith %}
+  {% else %}
+      <p>No results found.</p>
+  {% endif %} 
+  {% endblock %}

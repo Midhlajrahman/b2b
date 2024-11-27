@@ -1,0 +1,20 @@
+{% extends "web/partials/base.html" %}
+{% load i18n  %}
+
+{% block title %}{% trans "Logged out" %}{% endblock %}
+
+{% block content %}
+<section class="layout-pt-lg layout-pb-lg bg-blue-2">
+    <div class="container">
+      <div class="row justify-center">
+        <div class="col-xl-6 col-lg-7 col-md-9" style="  padding-top: 100px;">
+          <div class="px-50 py-50 sm:px-20 sm:py-20 bg-white shadow-4 rounded-4">
+            <div class="row y-gap-20">
+                <p>{% trans "Successfully logged out" %}.</p>
+                <p><a href="{% url 'auth_login' %}" style="color: #6d0098;;">Login Again</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% endblock %}

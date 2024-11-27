@@ -1,0 +1,42 @@
+[
+{
+  "model": "web.partnerlogo",
+  "pk": 1,
+  "fields": {
+    "name": "click umrah",
+    "image": "partners_logos/Untitled_design_8.png"
+  }
+},
+{
+  "model": "web.partnerlogo",
+  "pk": 2,
+  "fields": {
+    "name": "ain-dubai",
+    "image": "partners_logos/ain-dubai.png"
+  }
+},
+{
+  "model": "web.partnerlogo",
+  "pk": 3,
+  "fields": {
+    "name": "motf",
+    "image": "partners_logos/motf.png"
+  }
+},
+{
+  "model": "web.partnerlogo",
+  "pk": 4,
+  "fields": {
+    "name": "yas-waterword",
+    "image": "partners_logos/yas-waterworld.png"
+  }
+},
+{
+  "model": "web.partnerlogo",
+  "pk": 5,
+  "fields": {
+    "name": "warner-bros-world",
+    "image": "partners_logos/warner-bros-world.png"
+  }
+}
+]

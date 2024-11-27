@@ -1,0 +1,112 @@
+{% extends 'web/partials/base.html' %}
+{% load static %}
+{% block title %}
+   BOOKING AVAILABILITY
+{% endblock %}
+
+{% block content %}
+<main>
+  <div class="header-margin"></div>
+  <section class="pt-40">
+    <div class="container">
+      <div class="row x-gap-40 y-gap-30 items-center">
+        <div class="col-auto">
+          <div class="d-flex items-center">
+            <div class="size-40 rounded-full flex-center bg-blue-1">
+              <i class="icon-check text-16 text-white"></i>
+            </div>
+            <div class="text-18 fw-500 ml-10">Your selection</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="w-full h-1 bg-border"></div>
+        </div>
+        <div class="col-auto">
+          <div class="d-flex items-center">
+            <div class="size-40 rounded-full flex-center bg-blue-1-05 text-blue-1 fw-500">2</div>
+            <div class="text-18 fw-500 ml-10">Your details</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="w-full h-1 bg-border"></div>
+        </div>
+        <div class="col-auto">
+          <div class="d-flex items-center">
+            <div class="size-40 rounded-full flex-center bg-blue-1-05 text-blue-1 fw-500">3</div>
+            <div class="text-18 fw-500 ml-10">Final step</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pt-40 layout-pb-md">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-7 col-lg-8">
+          <div class="py-15 px-20 rounded-4 text-15 bg-blue-1-05">
+            <a href="#" class="text-blue-1 fw-500">YOUR DESTINATION</a><br>
+           <h5 class="mt-10 text-22 fw-500">{{ticket_type}}</h5> 
+          </div>
+          <h2 class="text-22 fw-500 mt-40 md:mt-24">Select a date</h2>
+          <div class="row x-gap-20 y-gap-20 pt-20">
+            <div class="col-md-6">
+              <div class="form-input">
+                <form action="" method="get" style="width: 300px;">
+                  {{ form.validity_end_date }}
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="row x-gap-20 y-gap-20">
+            <div id="id_tickets">
+            </div>
+          </div>
+          
+          <div class="row y-gap-30 pt-40">
+            <div class="col-12">
+              <div class="px-24 py-20 rounded-4 bg-blue-2">
+                <div class="row x-gap-20 y-gap-20 items-center">
+                  <div class="col-auto">
+                    <div class="flex-center size-60 rounded-full bg-white">
+                      <i class="icon-star text-yellow-1 text-30"></i>
+                    </div>
+                  </div>
+                  <div class="col-auto">
+                    <h4 class="text-18 lh-15 fw-500">This property is in high demand!</h4>
+                    <div class="text-15 lh-15">7 travelers have booked today.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script>
+  $("#id_validity_end_date").change(function () {
+    console.log('id_validity_end_date');
+    const url = "{% url 'ticket:ajax_load_tickets' %}";
+    var select_date = $(this).val();
+    var ticket_type = '{{ ticket_type.pk }}';
+    console.log('select_date=', select_date);
+    console.log('ticket_type=', ticket_type);
+    $.ajax({
+      url: url,
+      data: {
+        'select_date': select_date,
+        'ticket_type': ticket_type
+      },
+      success: function (data) {
+        $("#id_tickets").html(data);
+      }
+    });
+  });
+</script>
+{% endblock %}
