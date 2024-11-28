@@ -46,6 +46,9 @@ class TouristDestination(BaseModel):
     def __str__(self):
         return self.name
     
+    def get_destination_specification(self):
+        return DestinationSpecification.objecrs.filter(destination=self)
+    
     def get_image(self):
         return DestinationImage.objects.filter(destination=self).first()
     
@@ -72,7 +75,7 @@ class DestinationImage(models.Model):
 
 class DestinationSpecification(models.Model):
     destination = models.ForeignKey(TouristDestination, on_delete=models.CASCADE)
-    specification_heading = models.CharField(max_length=50,choices=(('Highlights','Highlights'),('Inclusions','Inclusions')),default='Highlights')
+    specification_heading = models.CharField(max_length=50)
     specification_content = HTMLField()
 
     def __str__(self):

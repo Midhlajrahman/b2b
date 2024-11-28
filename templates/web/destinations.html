@@ -35,7 +35,7 @@
       </div>
     </section>
 
-    <section class="layout-pt-md layout-pb-lg">
+    <section class="layout-pt-md layout-pb-lg destination-section">
       <div class="container">
         <div class="row y-gap-20 justify-between items-end">
           <div class="col-auto">
@@ -1612,27 +1612,19 @@
               <div class="mt-30"></div>
   
               <div class="row y-gap-30">
-                {% for destination in city.get_destinations %}
+                {% for destination in destinations %}
                 <div class="col-12">
   
                   <div class="border-top-light pt-30">
                     <div class="row x-gap-20 y-gap-20">
                       <div class="col-md-auto">
   
-                        <div class="cardImage ratio ratio-1:1 w-250 md:w-1/1 rounded-4">
+                        <div class="cardImage ratio ratio-1:1 md:w-1/1 rounded-4">
                           <div class="cardImage__content">
   
                             <img class="rounded-4 col-12" src="{{destination.get_image.image.url}}" alt="image">
   
-  
                           </div>
-  
-                          <div class="cardImage__wishlist">
-                            <button class="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                              <i class="icon-heart text-12"></i>
-                            </button>
-                          </div>
-  
   
                         </div>
   
@@ -1641,66 +1633,67 @@
                       <div class="col-md">
                         <h3 class="text-18 lh-16 fw-500">
                           {{destination.name}}
-  
-                          <div class="d-inline-block ml-10">
-                            <i class="icon-star text-10 text-yellow-2"></i>
-                            <i class="icon-star text-10 text-yellow-2"></i>
-                            <i class="icon-star text-10 text-yellow-2"></i>
-                            <i class="icon-star text-10 text-yellow-2"></i>
-                            <i class="icon-star text-10 text-yellow-2"></i>
-                          </div>
                         </h3>
   
-                        <div class="row x-gap-10 y-gap-10 items-center pt-10">
+                        <div class="row x-gap-10 y-gap-10 items-center pt-10 mt-10">
                           <div class="col-auto">
-                            <p class="text-14">Westminster Borough, London</p>
+                              <span class="icon-circle-check text-success" style="font-size: 10px; border-radius: 50%; border: 1px solid gray; padding: 5px; display: inline-flex; align-items: center; justify-content: center;">
+                                  <i class="fa fa-check"></i>
+                              </span>
                           </div>
-  
                           <div class="col-auto">
-                            <button data-x-click="mapFilter" class="d-block text-14 text-blue-1 underline">Show on map</button>
-                          </div>
-  
-                          <div class="col-auto">
-                            <div class="size-3 rounded-full bg-light-1"></div>
-                          </div>
-  
-                          <div class="col-auto">
-                            <p class="text-14">2 km to city center</p>
+                              <p class="text-14">Instant Confirmation</p>
                           </div>
                         </div>
+
+                        <div class="row x-gap-10 y-gap-10 items-center">
+                          <div class="col-auto">
+                              <span class="icon-circle-check text-success" style="font-size: 10px; border-radius: 50%; border: 1px solid gray; padding: 5px; display: inline-flex; align-items: center; justify-content: center;">
+                                  <i class="fa fa-check"></i>
+                              </span>
+                          </div>
+                          <div class="col-auto">
+                              <p class="text-14">Non Refundable</p>
+                          </div>
+                        </div>
+
+                        <div class="row x-gap-10 y-gap-10 pt-20">
+                          <div class="info-card">
+
+                          <div class="col-auto d-flex">
+                              <div class="text-10" onclick="openModal('experienceModal', '{{destination.name}}')" ><i class="fas fa-info-circle me-1"></i>About The Experience</div>
+                              <div class="text-10 ms-4" onclick="openModal('experienceModal', '{{destination.name}}')" ><i class="fas fa-check-circle me-1"></i> Inclusion</div>
+                              <div class="text-10 ms-4" onclick="openModal('experienceModal', '{{destination.name}}')" ><i class="fas fa-exclamation-triangle me-1"></i>Important Information</div>
+                              
+                          </div>
+                          </div>
   
-                        <div class="text-14 lh-15 mt-20">
-                          <div class="fw-500">King Room</div>
-                          <div class="text-light-1">1 extra-large double bed</div>
                         </div>
   
-                        <div class="text-14 text-green-2 lh-15 mt-10">
-                          <div class="fw-500">Free cancellation</div>
-                          <div class="">You can cancel later, so lock in this great price today.</div>
-                        </div>
-  
-                       
                       </div>
   
-                      <div class="col-md-auto text-right md:text-left">
+                      <div class="col-md-auto text-right md:text-left ">
                         <div class="row x-gap-10 y-gap-10 justify-end items-center md:justify-start">
+                          
                           <div class="col-auto">
-                            <div class="text-14 lh-14 fw-500">Exceptional</div>
-                            <div class="text-14 lh-14 text-light-1">3,014 reviews</div>
-                          </div>
-                          <div class="col-auto">
-                            <div class="flex-center text-white fw-600 text-14 size-40 rounded-4 bg-blue-1">4.8</div>
+                            <div class="d-inline-block ml-10">
+                              <i class="icon-star text-10 text-yellow-2"></i>
+                              <i class="icon-star text-10 text-yellow-2"></i>
+                              <i class="icon-star text-10 text-yellow-2"></i>
+                              <i class="icon-star text-10 text-yellow-2"></i>
+                              <i class="icon-star text-10 text-yellow-2"></i>
+                            </div>
+                            <div class="text-14 lh-14 text-light-1">140 Reviews</div>
                           </div>
                         </div>
   
                         <div class="">
-                          <div class="text-14 text-light-1 mt-50 md:mt-20">8 nights, 2 adult</div>
-                          <div class="text-22 lh-12 fw-600 mt-5">US$72</div>
-                          <div class="text-14 text-light-1 mt-5">+US$828 taxes and charges</div>
+                          <div class="text-14 text-light-1 mt-20 md:mt-20">From <span class="text-black fw-500">AED</span></div>
+                          <div class="text-22 lh-12 fw-600 mt-5">{{ destination.get_chepest_price.price }}</div>
   
   
-                          <a href="#" class="button -md -dark-1 bg-blue-1 text-white mt-24">
-                            See Availability <div class="icon-arrow-top-right ml-15"></div>
+                          <a href="{% url 'web:destination-details' destination.pk %}" class="button -md -dark-1 bg-blue-1 text-white mt-20">
+                            SELECT
                           </a>
   
                         </div>
@@ -1709,98 +1702,12 @@
                   </div>
   
                 </div>
+
+              {% include "web/partials/destination_modal.html" %}
                 {% endfor %}
               </div>
   
-              <div class="border-top-light mt-30 pt-30">
-                <div class="row x-gap-10 y-gap-20 justify-between md:justify-center">
-                  <div class="col-auto md:order-1">
-                    <button class="button -blue-1 size-40 rounded-full border-light">
-                      <i class="icon-chevron-left text-12"></i>
-                    </button>
-                  </div>
-  
-                  <div class="col-md-auto md:order-3">
-                    <div class="row x-gap-20 y-gap-20 items-center md:d-none">
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">1</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">3</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full bg-light-2">4</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">5</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">...</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">20</div>
-  
-                      </div>
-  
-                    </div>
-  
-                    <div class="row x-gap-10 y-gap-20 justify-center items-center d-none md:d-flex">
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">1</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full bg-dark-1 text-white">2</div>
-  
-                      </div>
-  
-                      <div class="col-auto">
-  
-                        <div class="size-40 flex-center rounded-full">3</div>
-  
-                      </div>
-  
-                    </div>
-  
-                    <div class="text-center mt-30 md:mt-10">
-                      <div class="text-14 text-light-1">1 – 20 of 300+ properties found</div>
-                    </div>
-                  </div>
-  
-                  <div class="col-auto md:order-2">
-                    <button class="button -blue-1 size-40 rounded-full border-light">
-                      <i class="icon-chevron-right text-12"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <div class="border-top-light mt-30 pt-30"></div>
             </div>
           </div>
           
@@ -1998,4 +1905,30 @@
 
 
   </main>
+
+<!-- Modals -->
+
+<script>
+  function openModal(modalId, title) {
+    const modal = document.getElementById(modalId);
+    const modalTitle = modal.querySelector('.modal-content h3');
+    modalTitle.textContent = title;
+    modal.style.display = 'block';
+  }
+  
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+  }
+  
+  // Close modal when clicking outside of it
+  window.onclick = function (event) {
+    const modals = document.querySelectorAll('.custom-modal');
+    modals.forEach(modal => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  };
+</script>
   {% endblock %}

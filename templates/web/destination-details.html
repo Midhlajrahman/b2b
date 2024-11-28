@@ -95,7 +95,8 @@
             </div>
             <div class="row y-gap-10 ">
               <div class="col-xl-12 html-div">
-                <p class="text-15 text-dark-1">
+                <h3 class="text-22 fw-500">{{destination_detail.name}} Overview</h3>
+                <p class="text-15 text-dark-1 mt-20">
                   {{destination_detail.description|safe}} 
                 </p>
               </div>
@@ -104,7 +105,7 @@
             <div class="row x-gap-40 y-gap-40">
               {% for specification in destination_detail.destinationspecification_set.all %}
               <div class="col-12 html-div">
-                <h3 class="text-22 fw-500">{{ specification.specification_heading }}</h3>
+                <h3 class="text-22 fw-500">{{destination_detail.name}} {{ specification.specification_heading }}</h3>
                 <p class="text-dark-1 text-15 mt-20">
                   {{ specification.specification_content|safe }}</p>
               </div>

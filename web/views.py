@@ -80,12 +80,14 @@ def destinations(request):
 @login_required
 def destination(request, pk):
     city = DestinationCity.objects.get(pk=pk)
+    destinations = TouristDestination.objects.filter(city=city)
     testimonials = Testimonial.objects.all()
     blogs = Blog.objects.all()[:3]
     things_to_do = ThingsToDo.objects.filter(city=city)
    
     context = {
         "city": city,
+        "destinations":destinations,
         "is_destination": True,
         "testimonials": testimonials,
         "blogs":blogs,

@@ -1,0 +1,50 @@
+<div id="experienceModal" class="custom-modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('experienceModal')">&times;</span>
+      <h3 class="text-20">{{destination.name}}</h3>
+      <div class="row y-gap-30 justify-center pt-30 pb-20 sm:pt-20">
+        <div class="col-xl-12 col-lg-12">
+          <div class="accordion -simple row y-gap-20 js-accordion">
+  
+            <div class="col-12">
+              <div class="accordion__item rounded-4">
+                <div class="accordion__button d-flex items-center">
+                  <div class="accordion__icon size-40 flex-center bg-light-2 rounded-full mr-20">
+                    <i class="icon-plus"></i>
+                    <i class="icon-minus"></i>
+                  </div>
+  
+                  <div class="button text-dark-1">About The Experience</div>
+                </div>
+  
+                <div class="accordion__content">
+                  <div class="pl-40">
+                    <p class="text-15">{{ destination.description|safe|default:"Description not available." }}</p>
+                  </div>
+                </div>
+              </div>
+
+             {% for specification in destination.destinationspecification_set.all %}
+              <div class="accordion__item rounded-4 ">
+                <div class="accordion__button d-flex items-center">
+                  <div class="accordion__icon size-40 flex-center bg-light-2 rounded-full mr-20">
+                    <i class="icon-plus"></i>
+                    <i class="icon-minus"></i>
+                  </div>
+  
+                  <div class="button text-dark-1">{{ specification.specification_heading }}</div>
+                </div>
+  
+                <div class="accordion__content">
+                  <div class="pl-40">
+                    <p class="text-15">{{ specification.specification_content|safe }}</p>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
