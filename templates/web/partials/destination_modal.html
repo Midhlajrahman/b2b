@@ -7,41 +7,41 @@
           <div class="accordion -simple row y-gap-20 js-accordion">
   
             <div class="col-12">
-              <div class="accordion__item rounded-4">
+              <div class="accordion__item rounded-4 is-active">
                 <div class="accordion__button d-flex items-center">
                   <div class="accordion__icon size-40 flex-center bg-light-2 rounded-full mr-20">
                     <i class="icon-plus"></i>
                     <i class="icon-minus"></i>
                   </div>
-  
-                  <div class="button text-dark-1">About The Experience</div>
+              
+                  <div class="button text-dark-1 accordion-title">About The Experience</div>
                 </div>
-  
-                <div class="accordion__content">
+              
+                <div class="accordion__content" style="max-height: 100%;">
                   <div class="pl-40">
                     <p class="text-15">{{ destination.description|safe|default:"Description not available." }}</p>
                   </div>
                 </div>
               </div>
 
-             {% for specification in destination.destinationspecification_set.all %}
-              <div class="accordion__item rounded-4 ">
+              {% for specification in destination.destinationspecification_set.all %}
+              <div class="accordion__item rounded-4 is-active">
                 <div class="accordion__button d-flex items-center">
                   <div class="accordion__icon size-40 flex-center bg-light-2 rounded-full mr-20">
                     <i class="icon-plus"></i>
                     <i class="icon-minus"></i>
                   </div>
-  
+
                   <div class="button text-dark-1">{{ specification.specification_heading }}</div>
                 </div>
-  
-                <div class="accordion__content">
+
+                <div class="accordion__content" style="max-height: 100%;">
                   <div class="pl-40">
                     <p class="text-15">{{ specification.specification_content|safe }}</p>
                   </div>
                 </div>
               </div>
-              {% endfor %}
+            {% endfor %}
             </div>
           </div>
         </div>

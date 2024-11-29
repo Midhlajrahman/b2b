@@ -248,3 +248,13 @@
 .hotelsCard.-type-1 .hotelsCard__title span{
   background-image: linear-gradient(transparent 22px, #ffffff 18px) !important;
 }
+.custom-modal .accordion.-simple .accordion__item.is-active .accordion__icon {
+  background-color: #30458d !important;
+  color: white !important;
+}
+.custom-modal .accordion__content strong{
+ font-weight: 500 !important;
+}
+.custom-modal .accordion-title{
+  font-weight: 600 !important;
+}

@@ -1618,15 +1618,16 @@
                   <div class="border-top-light pt-30">
                     <div class="row x-gap-20 y-gap-20">
                       <div class="col-md-auto">
-  
+                        <a href="{% url 'web:destination-details' destination.pk %}">
                         <div class="cardImage ratio ratio-1:1 md:w-1/1 rounded-4">
+                          
                           <div class="cardImage__content">
   
                             <img class="rounded-4 col-12" src="{{destination.get_image.image.url}}" alt="image">
   
                           </div>
-  
                         </div>
+                      </a>
   
                       </div>
   
