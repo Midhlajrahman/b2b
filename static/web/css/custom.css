@@ -258,3 +258,13 @@
 .custom-modal .accordion-title{
   font-weight: 600 !important;
 }
+.cardImage__leftBadge div{
+  background: #9D01D4 !important;
+}
+.search-div input{
+  background-color: #F5F5F5 !important;
+}
+.search-div .icon{
+  position: relative; 
+  right: 30px !important;
+}

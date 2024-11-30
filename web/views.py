@@ -31,6 +31,8 @@ from django.core.serializers import serialize
 from django.contrib.auth.decorators import login_required
 import qrcode
 import tempfile
+from django.db.models import Q
+
 
 @login_required
 def index(request):
@@ -79,19 +81,30 @@ def destinations(request):
 
 @login_required
 def destination(request, pk):
-    city = DestinationCity.objects.get(pk=pk)
-    destinations = TouristDestination.objects.filter(city=city)
+    city = get_object_or_404(DestinationCity, pk=pk)
+    query = request.GET.get("q", "")
+    
+    if query:
+        destinations = TouristDestination.objects.filter(
+            Q(city=city) & Q(name__icontains=query)
+        )
+    else:
+        destinations = TouristDestination.objects.filter(city=city)
+    
+    total_destinations = destinations.count()
     testimonials = Testimonial.objects.all()
     blogs = Blog.objects.all()[:3]
     things_to_do = ThingsToDo.objects.filter(city=city)
-   
+
     context = {
         "city": city,
-        "destinations":destinations,
+        "destinations": destinations,
         "is_destination": True,
         "testimonials": testimonials,
-        "blogs":blogs,
-        "things_to_do":things_to_do,
+        "blogs": blogs,
+        "things_to_do": things_to_do,
+        "query": query,
+        "total_destinations":total_destinations
     }
     return render(request, "web/destinations.html", context)
 

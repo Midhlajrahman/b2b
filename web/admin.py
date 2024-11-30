@@ -6,7 +6,6 @@ from .models import DestinationCity, DestinationImage, TouristDestination,Destin
 class DestinationSpecificationInline(admin.TabularInline):
     model = DestinationSpecification
     extra = 1  
-    max_num = 2
 
 
 class DestinationImageInline(admin.TabularInline):

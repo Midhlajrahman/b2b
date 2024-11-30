@@ -926,16 +926,29 @@
             <div class="col-xl-9">
               <div class="row y-gap-10 items-center justify-between">
                 <div class="col-auto">
-                  <div class="text-18"><span class="fw-500">3,269 properties</span> in Europe</div>
+                  <div class="text-18"><span class="fw-500">{{total_destinations }} Destinations</span> in {{ city.name }}</div>
                 </div>
   
                 <div class="col-auto">
                   <div class="row x-gap-20 y-gap-20">
                     <div class="col-auto">
-                      <button class="button -blue-1 h-40 px-20 rounded-100 bg-blue-1-05 text-15 text-blue-1">
-                        <i class="icon-up-down text-14 mr-10"></i>
-                        Top picks for your search
-                      </button>
+                      <form class="d-flex align-items-center" method="get">
+                        <div class="position-relative w-100 d-flex search-div">
+                          <input 
+                            type="text" 
+                            name="q" 
+                            class="form-control h-40 px-20 rounded-100 text-15 pr-40" 
+                            placeholder="Search your top picks" 
+                            aria-label="Search" 
+                            value="{{ query|default:'' }}" 
+                          />
+                          <button 
+                            type="submit" 
+                            class="position-relative icon top-0 h-40 text-15 text-blue-1 border-0 bg-transparent">
+                            <i class="icon-search"></i>
+                          </button>
+                        </div>
+                      </form>
                     </div>
   
                     <div class="col-auto d-none lg:d-block">
@@ -1626,6 +1639,9 @@
                             <img class="rounded-4 col-12" src="{{destination.get_image.image.url}}" alt="image">
   
                           </div>
+                          {% if destination.popular_destination %}
+                          <div class="cardImage__leftBadge"><div class="py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase bg-blue-1 text-white">Popular Destination</div></div>
+                          {% endif %}
                         </div>
                       </a>
   
